@@ -1,14 +1,14 @@
 import requests
-import os
+
 BEARER = "traker"
-USERNAME = os.getenv("API_Username_Sheety")
+USERNAME = "99129d772f20552f38a3ef08f9a3f35d"
 
 PROJECT = "traker"
 SHEET = "users"
 
 base_url = "https://api.sheety.co"
 
-def post_new_row(first_name, last_name, email):
+def post_new_row(first_name, last_name, email, bedget):
     endpoint_url = f"/{USERNAME}/{PROJECT}/{SHEET}"
     url = base_url + endpoint_url
 
@@ -21,6 +21,7 @@ def post_new_row(first_name, last_name, email):
             "firstName": first_name,
             "lastName": last_name,
             "email": email,
+            "bedget": bedget
         }
     }
 
@@ -34,6 +35,6 @@ def get_customer_emails():
     }
     response = requests.get(url=customers_endpoint, headers=headers)
     data = response.json()
-    print(data)
+    # print(data)
     customer_data = data["users"]
     return customer_data
